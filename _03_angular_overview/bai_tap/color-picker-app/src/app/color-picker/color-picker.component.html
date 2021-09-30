@@ -1,0 +1,21 @@
+<div>
+  <label>
+    color:
+    <input type="text" [(ngModel)]="mycolor">
+  </label>
+</div>
+<div>
+  <label>
+    width:
+    <input type="text" [(ngModel)]="mywidth">
+  </label>
+</div>
+<div>
+  <label>
+    height:
+    <input type="text" [(ngModel)]="myheight">
+  </label>
+</div>
+<div>
+  <p style="background: {{mycolor}}; width: {{mywidth}}; height: {{myheight}}"></p>
+</div>
