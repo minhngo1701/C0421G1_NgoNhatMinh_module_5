@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1>Customer Edit</h1>
+    <form action="/customer/edit" method="post" >
+      <input type="hidden" >
+      <div class="mb-3">
+        <label for="nameCustomer" class="form-label">Name:</label>
+        <input class="form-control" type="text" name="nameCustomer" id="nameCustomer" >
+      </div>
+      <div class="mb-3">
+        <label for="dateOfBirth" class="form-label">Date of birth:</label>
+        <input class="form-control" type="date" name="dateOfBirth" id="dateOfBirth" >
+      </div>
+      <div class="mb-3">
+        <label for="idCard" class="form-label">ID Card:</label>
+        <input class="form-control" type="text" name="idCard" id="idCard" >
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input class="form-control" type="text" name="phone" id="phone" >
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input class="form-control" type="email" name="email" id="email" >
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input class="form-control" type="text" name="address" id="address" >
+      </div>
+      <div class="mb-3">
+        <label for="customerCode" class="form-label">Customer Code</label>
+        <input class="form-control" type="text" name="customerCode" id="customerCode" >
+      </div>
+      <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <select class="form-select" name="gender" id="gender">
+          <option >Male</option>
+          <option >Female</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="customerType" class="form-label">Customer Type</label>
+        <select class="form-select" id="customerType" name="customerType">
+          <option >
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <input type="submit" value="Save">
+      </div>
+    </form>
+  </div>
+</div>
