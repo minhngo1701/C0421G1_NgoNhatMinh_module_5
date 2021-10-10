@@ -2,14 +2,17 @@
   <div class="col-lg-12" >
     <h3>Customer List</h3>
     <p>
-      <a class="btn btn-success mb-2" href="/customer/create" role="button">Create</a>
+      <a class="btn btn-success mb-2" routerLink="/customer/create" role="button">Create</a>
     </p>
+    <nav class="navbar">
+      <input type="text" name="name" [(ngModel)]="name" (ngModelChange)="search()" placeholder="Search">
+    </nav>
     <p style="color: green" ></p>
     <table class="table table-warning table-striped" border="1">
       <thead>
       <tr>
-        <th>ID</th>
-        <th>Name</th>
+        <th (click)="sort('idCus')">ID<i class="fa fa-sort"></i></th>
+        <th (click)="sort('nameCus')">Name<i class="fa fa-sort"></i></th>
         <th>Date of birth</th>
         <th>Gender</th>
         <th>ID Card</th>
@@ -18,13 +21,27 @@
         <th>Address</th>
         <th>Customer Code</th>
         <th>Customer Type</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Action</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
-
+        <tr *ngFor="let item of customers | orderBy: key: reverse | paginate:{itemsPerPage: 2, currentPage: p}">
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.dateOfBirth}}</td>
+          <td>{{item.gender}}</td>
+          <td>{{item.idCard}}</td>
+          <td>{{item.phone}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.address}}</td>
+          <td>{{item.code}}</td>
+          <td>{{item.customerType.name}}</td>
+          <td><button class="btn btn-primary" [routerLink]="['/customer/edit', item.id]">Edit</button></td>
+          <td></td>
+        </tr>
       </tbody>
     </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>

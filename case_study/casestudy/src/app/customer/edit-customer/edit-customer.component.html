@@ -1,54 +1,191 @@
 <div class="row">
-  <div class="col-lg-12">
-    <h1>Customer Edit</h1>
-    <form action="/customer/edit" method="post" >
-      <input type="hidden" >
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+    <h1>Customer edit</h1>
+    <form [formGroup]="editForm" (ngSubmit)="updateCustomer(id)">
+<!--      <input type="hidden" formControlName="id">-->
       <div class="mb-3">
-        <label for="nameCustomer" class="form-label">Name:</label>
-        <input class="form-control" type="text" name="nameCustomer" id="nameCustomer" >
+        <label class="form-label">Name:</label>
+        <input class="form-control" type="text" formControlName="name">
       </div>
       <div class="mb-3">
-        <label for="dateOfBirth" class="form-label">Date of birth:</label>
-        <input class="form-control" type="date" name="dateOfBirth" id="dateOfBirth" >
+        <label class="form-label">Code Customer</label>
+        <input class="form-control" type="text" formControlName="code">
+
       </div>
       <div class="mb-3">
-        <label for="idCard" class="form-label">ID Card:</label>
-        <input class="form-control" type="text" name="idCard" id="idCard" >
+        <label class="form-label">Date of birth:</label>
+        <input class="form-control" type="date" formControlName="dateOfBirth">
+
       </div>
       <div class="mb-3">
-        <label for="phone" class="form-label">Phone</label>
-        <input class="form-control" type="text" name="phone" id="phone" >
+        <label class="form-label">ID Card:</label>
+        <input class="form-control" type="text" formControlName="idCard">
+
       </div>
       <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input class="form-control" type="email" name="email" id="email" >
+        <label class="form-label">Gender:</label>
+        <input  type="radio"  value="Male" formControlName="gender">Male
+        <input  type="radio"  value="Female" formControlName="gender">Female
+        <input  type="radio"  value="LGBT" formControlName="gender">LGBT
+
       </div>
       <div class="mb-3">
-        <label for="address" class="form-label">Address</label>
-        <input class="form-control" type="text" name="address" id="address" >
+        <label  class="form-label">Phone</label>
+        <input class="form-control" type="text" formControlName="phone">
+
       </div>
       <div class="mb-3">
-        <label for="customerCode" class="form-label">Customer Code</label>
-        <input class="form-control" type="text" name="customerCode" id="customerCode" >
+        <label class="form-label">Email</label>
+        <input class="form-control" type="email" formControlName="email">
+
       </div>
       <div class="mb-3">
-        <label for="gender" class="form-label">Gender</label>
-        <select class="form-select" name="gender" id="gender">
-          <option >Male</option>
-          <option >Female</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="customerType" class="form-label">Customer Type</label>
-        <select class="form-select" id="customerType" name="customerType">
-          <option >
-          </option>
-        </select>
+        <label class="form-label">Address</label>
+        <input class="form-control" type="text" formControlName="address">
       </div>
 
+      <div class="mb-3">
+        <label class="form-label">Customer Type</label>
+        <section class="form-select" formControlName="customerType">
+          <option *ngFor="let item of cusType" [ngValue]="item"
+          [selected]="item.name == editForm.controls.cusType.value.name"> {{item.name}}</option>
+        </section>
+      </div>
       <div>
-        <input type="submit" value="Save">
+        <input class="btn btn-primary" type="submit" value="Submit">
       </div>
     </form>
   </div>
+  <div class="col-lg-3"></div>
 </div>
+
+<!--<div class="container-fluid">-->
+<!--  <div class="row">-->
+<!--    <div class="col-lg-12" align="center">-->
+<!--      <h2>Edit Customer</h2>-->
+<!--      <button routerLink="/customer/list" class="btn btn-primary">Back to customer</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="row">-->
+<!--    <div class="col-lg-3"></div>-->
+<!--    <div class="col-lg-6">-->
+<!--      <div class="p-md-3">-->
+<!--        <form [formGroup]="customerForm" (ngSubmit)="update(id)">-->
+<!--          <div class="row g-3">-->
+<!--            <div class="col" hidden>-->
+<!--              <input type="text"-->
+<!--                     formControlName="id">-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--              <label>Customer Code</label>-->
+<!--              <input type="text" class="form-control" aria-label="Customer Code"-->
+<!--                     formControlName="customerCode">-->
+<!--              &lt;!&ndash;              <div class="alert-danger" *ngFor="let va of validationMessage.customerCode" [hidden]="va.valid">&ndash;&gt;-->
+<!--              &lt;!&ndash;                <div&ndash;&gt;-->
+<!--              &lt;!&ndash;                  *ngIf="customerForm.get('code').hasError(va.type)&& customerForm.get('code').dirty">{{va.message}}</div>&ndash;&gt;-->
+<!--              &lt;!&ndash;              </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--              <label>Name</label>-->
+<!--              <input type="text" class="form-control" placeholder="Customer Name" aria-label="Customer Name"-->
+<!--                     formControlName="customerName">-->
+<!--              &lt;!&ndash;              <div class="alert-danger" *ngFor="let va of validationMessage.customerName" [hidden]="va.valid">&ndash;&gt;-->
+<!--              &lt;!&ndash;                <div&ndash;&gt;-->
+<!--              &lt;!&ndash;                  *ngIf="customerForm.get('name').hasError(va.type)&& customerForm.get('name').dirty">{{va.message}}</div>&ndash;&gt;-->
+<!--              &lt;!&ndash;              </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="form-label">Type Customer:</label>-->
+<!--            <select class="form-control" formControlName="customerType">-->
+<!--              <option *ngFor="let type of customerTypeList" [ngValue]="type"-->
+<!--                      [selected]="type.customerTypeName == customerForm.controls.customerType.value.customerTypeName">{{type.customerTypeName}}</option>-->
+<!--            </select>-->
+<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerType" [hidden]="va.valid">&ndash;&gt;-->
+<!--            &lt;!&ndash;              <div&ndash;&gt;-->
+<!--            &lt;!&ndash;                *ngIf="customerForm.get('customerType').hasError(va.type)&& customerForm.get('customerType').dirty">{{va.message}}</div>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="form-label">Birthday</label>-->
+<!--            <input type="date" class="form-control" formControlName="customerBirthday">-->
+<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerBirthday" [hidden]="va.valid">&ndash;&gt;-->
+<!--            &lt;!&ndash;              <div&ndash;&gt;-->
+<!--            &lt;!&ndash;                *ngIf="customerForm.get('birthday').hasError(va.type)&& customerForm.get('birthday').dirty">{{va.message}}</div>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label> Customer Gender</label><br><br>-->
+<!--            <div class="form-check-inline mb-3">-->
+<!--              <input class="form-check-input" type="radio" id="male" formControlName="customerGender"-->
+<!--                     value="Male">-->
+<!--              <label class="form-check-label" for="male">-->
+<!--                Male-->
+<!--              </label>-->
+<!--            </div>-->
+<!--            <div class="form-check-inline mb-3">-->
+<!--              <input class="form-check-input" type="radio" id="female" formControlName="customerGender"-->
+<!--                     value="Female">-->
+<!--              <label class="form-check-label" for="female">-->
+<!--                Female-->
+<!--              </label>-->
+<!--            </div>-->
+<!--            <div class="form-check-inline mb-3">-->
+<!--              <input class="form-check-input" type="radio" id="other" formControlName="customerGender"-->
+<!--                     value="Other">-->
+<!--              <label class="form-check-label" for="other">-->
+<!--                Other-->
+<!--              </label>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerGender" [hidden]="va.valid">&ndash;&gt;-->
+<!--          &lt;!&ndash;              <div&ndash;&gt;-->
+<!--          &lt;!&ndash;                *ngIf="customerForm.get('gender').hasError(va.type)&& customerForm.get('gender').dirty">{{va.message}}</div>&ndash;&gt;-->
+<!--          &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          <div class="mb-3">-->
+<!--            <label class="form-label">ID Card</label>-->
+<!--            <input type="text" class="form-control" placeholder="ID Card" aria-label="Customer ID Card"-->
+<!--                   formControlName="customerIdCard">-->
+<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerIdCard" [hidden]="va.valid">&ndash;&gt;-->
+<!--            &lt;!&ndash;              <div&ndash;&gt;-->
+<!--            &lt;!&ndash;                *ngIf="customerForm.get('birthday').hasError(va.type)&& customerForm.get('birthday').dirty">{{va.message}}</div>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="form-label">Phone</label>-->
+<!--            <input type="text" class="form-control" placeholder="Phone" aria-label="Customer Phone"-->
+<!--                   formControlName="customerPhone"-->
+<!--            >-->
+<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerPhone" [hidden]="va.valid">&ndash;&gt;-->
+<!--            &lt;!&ndash;              <div&ndash;&gt;-->
+<!--            &lt;!&ndash;                *ngIf="customerForm.get('phone').hasError(va.type)&& customerForm.get('phone').dirty">{{va.message}}</div>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="form-label">Email</label>-->
+<!--            <input type="email" class="form-control" placeholder="Customer email" aria-label="Customer email"-->
+<!--                   formControlName="customerEmail">-->
+<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerEmail" [hidden]="va.valid">&ndash;&gt;-->
+<!--            &lt;!&ndash;              <div&ndash;&gt;-->
+<!--            &lt;!&ndash;                *ngIf="customerForm.get('email').hasError(va.type)&& customerForm.get('email').dirty">{{va.message}}</div>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <label class="form-label">Address</label>-->
+<!--            <input type="text" class="form-control" placeholder="Customer address" aria-label="Customer address"-->
+<!--                   formControlName="customerAddress">-->
+<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerAddress" [hidden]="va.valid">&ndash;&gt;-->
+<!--            &lt;!&ndash;              <div&ndash;&gt;-->
+<!--            &lt;!&ndash;                *ngIf="customerForm.get('address').hasError(va.type)&& customerForm.get('address').dirty">{{va.message}}</div>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </div>-->
+<!--          <div class="col-auto">-->
+<!--            <button type="submit" class="btn btn-primary mb-3">Edit</button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-lg-3"></div>-->
+<!--  </div>-->
+<!--</div>-->

@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+    <h1>Employee Create</h1>
+    <form [formGroup]="createForm" (ngSubmit)="createCustomer()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input class="form-control" type="text" id="name" formControlName="name">
+      </div>
+      <div class="mb-3">
+        <label for="code" class="form-label">Code Customer</label>
+        <input class="form-control" type="text"  id="code" formControlName="code">
+
+      </div>
+      <div class="mb-3">
+        <label for="dateOfBirth" class="form-label">Date of birth:</label>
+        <input class="form-control" type="date"  id="dateOfBirth" formControlName="dateOfBirth">
+
+      </div>
+      <div class="mb-3">
+        <label for="idCard" class="form-label">ID Card:</label>
+        <input class="form-control" type="text"  id="idCard" formControlName="idCard">
+
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Gender:</label>
+        <input  type="radio"  value="Male" formControlName="gender">Male
+        <input  type="radio"  value="Female" formControlName="gender">Female
+        <input  type="radio"  value="LGBT" formControlName="gender">LGBT
+
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input class="form-control" type="text" id="phone" formControlName="phone">
+
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input class="form-control" type="email" id="email" formControlName="email">
+
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input class="form-control" type="text" id="address" formControlName="address">
+      </div>
+
+      <div class="mb-3">
+        <label for="customerType" class="form-label">Customer Type</label>
+        <select class="form-select" id="customerType" formControlName="customerType">
+          <option *ngFor="let item of customerType" [ngValue]="item">{{item.name}}</option>
+        </select>
+      </div>
+      <div>
+        <input class="btn btn-primary" type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+  <div class="col-lg-3"></div>
+</div>

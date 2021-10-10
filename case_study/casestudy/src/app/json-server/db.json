@@ -1,0 +1,194 @@
+{
+  "customerType": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Platinum"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    },
+    {
+      "id": 5,
+      "name": "Member"
+    }
+  ],
+  "customers": [
+    {
+      "code": "KH-0001",
+      "name": "Nguyen Tien Danh",
+      "gender": "Male",
+      "idCard": "123456781",
+      "phone": "0901111111",
+      "customerType": {
+        "id": 1,
+        "name": "Diamond"
+      },
+      "dateOfBirth": "2001-01-22",
+      "email": "ndanh@gmail.com",
+      "address": "Da Nang",
+      "id": 1
+    },
+    {
+      "code": "KH-0002",
+      "name": "Truong Anh Quan",
+      "gender": "Male",
+      "idCard": "123123123112",
+      "phone": "0901231232",
+      "customerType": {
+        "id": 2,
+        "name": "Platinum"
+      },
+      "dateOfBirth": "2021-07-03",
+      "email": "qan@codegym.vn",
+      "address": "Vung Tau",
+      "id": 2
+    },
+    {
+      "code": "KH-0003",
+      "name": "Ngo Nhat Minh",
+      "gender": "Female",
+      "idCard": "201482948",
+      "phone": "0903928172",
+      "customerType": {
+        "id": 3,
+        "name": "Gold"
+      },
+      "dateOfBirth": "2021-07-03",
+      "email": "min@codegym.vn",
+      "address": "Hue",
+      "id": 3
+    },
+    {
+      "code": "KH-0002",
+      "name": "Nguyen Thanh Lam",
+      "gender": "Female",
+      "idCard": "192740281",
+      "phone": "0909217320",
+      "customerType": {
+        "id": 4,
+        "name": "Silver"
+      },
+      "dateOfBirth": "2021-07-03",
+      "email": "lam@codegym.vn",
+      "address": "Ha Noi",
+      "id": 4
+    }
+  ],
+  "educationDegrees": [
+    {
+      "id": 1,
+      "name": "Lễ tân"
+    },
+    {
+      "id": 2,
+      "name": "Phục vụ"
+    },
+    {
+      "id": 3,
+      "name": "Chuyên viên"
+    },
+    {
+      "id": 4,
+      "name": "Giám sát"
+    },
+    {
+      "id": 5,
+      "name": "Quản lý"
+    },
+    {
+      "id": 6,
+      "name": "Giám đốc"
+    }
+  ],
+  "divisions": [
+    {
+      "id": 1,
+      "name": "Sale marketing"
+    },
+    {
+      "id": 2,
+      "name": "Hành chính"
+    },
+    {
+      "id": 3,
+      "name": "Phục vụ"
+    },
+    {
+      "id": 4,
+      "name": "Quản lý"
+    }
+  ],
+  "positions": [
+    {
+      "id": 1,
+      "name": "Trung cấp"
+    },
+    {
+      "id": 2,
+      "name": "Cao đẳng"
+    },
+    {
+      "id": 3,
+      "name": "Đại học"
+    },
+    {
+      "id": 4,
+      "name": "Sau đại học"
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "HaiTT",
+      "position": {
+        "id": 1,
+        "name": "Trung cấp"
+      },
+      "division": {
+        "id": 1,
+        "name": "Sale marketing"
+      },
+      "educationDegree": {
+        "id": 1,
+        "name": "Lễ tân"
+      },
+      "email": "HaiTT1@codegym.vn",
+      "birthday": "1996-06-30",
+      "phone": "0901234567",
+      "address": "Hà Nội",
+      "idCard": "018249102",
+      "salary": "7000000"
+    },
+    {
+      "id": 2,
+      "name": "TrungDP",
+      "position": {
+        "id": 2,
+        "name": "Cao đẳng"
+      },
+      "division": {
+        "id": 3,
+        "name": "Phục vụ"
+      },
+      "educationDegree": {
+        "id": 5,
+        "name": "Quản lý"
+      },
+      "email": "chien1@codegym.vn",
+      "birthday": "1998-06-30",
+      "phone": "0931827462",
+      "address": "Đà Nẵng",
+      "idCard": "1024019212",
+      "salary": "6000000"
+    }
+  ]
+}

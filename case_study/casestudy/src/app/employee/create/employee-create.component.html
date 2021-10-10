@@ -1,212 +1,236 @@
-<div class="container-fluid m-auto">
-  <div class="row">
-    <div class="col-lg-12 p-0" style="margin-bottom: 60px">
+<!--<div class="container-fluid m-auto">-->
+<!--  <div class="row">-->
+<!--    <div class="col-lg-12 p-0" style="margin-bottom: 60px">-->
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Furama Resort</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                  aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<!--      <nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">-->
+<!--        <div class="container-fluid">-->
+<!--          <a class="navbar-brand" href="#">Furama Resort</a>-->
+<!--          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"-->
+<!--                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"-->
+<!--                  aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--          </button>-->
+<!--          <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
 
-              <li class="nav-item">
-                <a class="nav-link" href="/home-page">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/employee/list">Employee</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/customer/list">Customer</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/service">Service</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/contract">Contract</a>
-              </li>
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link" href="/home-page">Home</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link" href="/employee/list">Employee</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link" href="/customer/list">Customer</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link" href="/service">Service</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link" href="/contract">Contract</a>-->
+<!--              </li>-->
 
-            </ul>
-            <form class="d-flex justify-content-end">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-success me-2" type="submit">Search</button>
-              <a href="/login" class="btn btn-dark navbar-btn" role="button">Login</a>
-            </form>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </div>
-</div>
+<!--            </ul>-->
+<!--            <form class="d-flex justify-content-end">-->
+<!--              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--              <button class="btn btn-success me-2" type="submit">Search</button>-->
+<!--              <a href="/login" class="btn btn-dark navbar-btn" role="button">Login</a>-->
+<!--            </form>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </nav>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
     <h1>Employee Create</h1>
-    <form action="/employee/create" method="post">
+    <form [formGroup]="employeeForm" (ngSubmit)="createEmployee()">
       <div class="mb-3">
-        <label for="nameEmployee" class="form-label">Name:</label>
-        <input class="form-control" type="text" name="nameEmployee" id="nameEmployee">
+        <label for="name" class="form-label">Name:</label>
+        <input class="form-control" type="text" id="name" formControlName="name">
+        <mat-error *ngFor="let validation of validationMsg.name">
+          <mat-error *ngIf="employeeForm.get('name').hasError(validation.type) && employeeForm.get('name').dirty">{{validation.message}}</mat-error>
+        </mat-error>
+      </div>
+      <div class="mb-3">
+        <label for="codeEmployee" class="form-label">Code Employee</label>
+        <input class="form-control" type="text"  id="codeEmployee" formControlName="codeEmployee">
+        <mat-error *ngFor="let validation of validationMsg.codeEmployee">
+          <mat-error *ngIf="employeeForm.get('codeEmployee').hasError(validation.type) && employeeForm.get('codeEmployee').dirty">{{validation.message}}</mat-error>
+        </mat-error>
       </div>
       <div class="mb-3">
         <label for="dateOfBirth" class="form-label">Date of birth:</label>
-        <input class="form-control" type="date" name="dateOfBirth" id="dateOfBirth">
+        <input class="form-control" type="date"  id="dateOfBirth" formControlName="dateOfBirth">
+        <mat-error *ngFor="let validation of validationMsg.dateOfBirth">
+          <mat-error *ngIf="employeeForm.get('dateOfBirth').hasError(validation.type) && employeeForm.get('dateOfBirth').dirty">{{validation.message}}</mat-error>
+        </mat-error>
       </div>
       <div class="mb-3">
         <label for="idCard" class="form-label">ID Card:</label>
-        <input class="form-control" type="text" name="idCard" id="idCard">
+        <input class="form-control" type="text"  id="idCard" formControlName="idCard">
+        <mat-error *ngFor="let validation of validationMsg.idCard">
+          <mat-error *ngIf="employeeForm.get('idCard').hasError(validation.type) && employeeForm.get('idCard').dirty">{{validation.message}}</mat-error>
+        </mat-error>
       </div>
       <div class="mb-3">
         <label for="salary" class="form-label">Salary:</label>
-        <input class="form-control" type="number" name="salary" id="salary">
+        <input class="form-control" type="number"  id="salary" formControlName="salary">
+        <mat-error *ngFor="let validation of validationMsg.salary">
+          <mat-error *ngIf="employeeForm.get('salary').hasError(validation.type) && employeeForm.get('salary').dirty">{{validation.message}}</mat-error>
+        </mat-error>
       </div>
       <div class="mb-3">
         <label for="phone" class="form-label">Phone</label>
-        <input class="form-control" type="text" name="phone" id="phone">
+        <input class="form-control" type="text" id="phone" formControlName="phone">
+        <mat-error *ngFor="let validation of validationMsg.phone">
+          <mat-error *ngIf="employeeForm.get('phone').hasError(validation.type) && employeeForm.get('phone').dirty">{{validation.message}}</mat-error>
+        </mat-error>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input class="form-control" type="email" name="email" id="email">
+        <input class="form-control" type="email" id="email" formControlName="email">
+        <mat-error *ngFor="let validation of validationMsg.email">
+          <mat-error *ngIf="employeeForm.get('email').hasError(validation.type) && employeeForm.get('email').dirty">{{validation.message}}</mat-error>
+        </mat-error>
       </div>
       <div class="mb-3">
         <label for="address" class="form-label">Address</label>
-        <input class="form-control" type="text" name="address" id="address">
+        <input class="form-control" type="text" id="address" formControlName="address">
       </div>
       <div class="mb-3">
         <label for="position" class="form-label">Position</label>
-        <select class="form-select" name="position" id="position">
-          <option>Select
-          </option>
+        <select class="form-select" id="position" formControlName="position">
+          <option *ngFor="let item of positionList" [ngValue]="item">{{item.name}}</option>
         </select>
       </div>
       <div class="mb-3">
         <label for="educationDegree" class="form-label">Education Degree</label>
-        <select class="form-select" id="educationDegree" name="educationDegree">
-          <option>Select
-          </option>
+        <select class="form-select" id="educationDegree"  formControlName="educationDegree">
+          <option *ngFor="let item of educationDegreeList" [ngValue]="item">{{item.name}}</option>
         </select>
       </div>
       <div class="mb-3">
         <label for="division" class="form-label">Division</label>
-        <select class="form-select" name="division" id="division">
-          <option value="null">Select
-          </option>
+        <select class="form-select" id="division" formControlName="division">
+          <option *ngFor="let item of divisionList" [ngValue]="item">{{item.name}}</option>
         </select>
       </div>
       <div>
-        <input type="submit" value="Submit">
+        <input class="btn btn-primary" type="submit" value="Submit">
       </div>
     </form>
   </div>
+  <div class="col-lg-3"></div>
 </div>
-<div class="container-fluid p-0 m-auto">
-  <footer class="panel panel-default" style="background-color: #45637d;">
-    <section
-      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
-    >
-      <!-- Left -->
-      <div class="me-5 d-none d-lg-block">
-        <span>Get connected with us on social networks:</span>
-      </div>
-      <!-- Left -->
+<!--<div class="container-fluid p-0 m-auto">-->
+<!--  <footer class="panel panel-default" style="background-color: #45637d;">-->
+<!--    <section-->
+<!--      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"-->
+<!--    >-->
+<!--      &lt;!&ndash; Left &ndash;&gt;-->
+<!--      <div class="me-5 d-none d-lg-block">-->
+<!--        <span>Get connected with us on social networks:</span>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; Left &ndash;&gt;-->
 
-      <!-- Right -->
-      <div>
-        <a href="https://www.facebook.com/" class="me-4 text-reset">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://twitter.com/" class="me-4 text-reset">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-github"></i>
-        </a>
-      </div>
-      <!-- Right -->
-    </section>
-    <div class="container p-4">
-      <!-- Section: Iframe -->
-      <section class="">
-        <div class="row d-flex justify-content-center">
-          <div class="col-lg-6">
-            <div class="ratio ratio-21x9">
-              <iframe width="200" height="200" src="https://www.youtube.com/embed/PcppkJWHMgY"
-                      title="YouTube video player" frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen></iframe>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="ratio ratio-21x9">
-              <iframe width="200" height="200" src="https://www.youtube.com/embed/wsq-r8lMMsk"
-                      title="YouTube video player" frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Section: Iframe -->
-    </div>
-    <section class="" style="background-color: lightgray">
-      <div class="container text-center text-md-start mt-5">
-        <!-- Grid row -->
-        <div class="row mt-3">
+<!--      &lt;!&ndash; Right &ndash;&gt;-->
+<!--      <div>-->
+<!--        <a href="https://www.facebook.com/" class="me-4 text-reset">-->
+<!--          <i class="fab fa-facebook-f"></i>-->
+<!--        </a>-->
+<!--        <a href="https://twitter.com/" class="me-4 text-reset">-->
+<!--          <i class="fab fa-twitter"></i>-->
+<!--        </a>-->
+<!--        <a href="" class="me-4 text-reset">-->
+<!--          <i class="fab fa-google"></i>-->
+<!--        </a>-->
+<!--        <a href="" class="me-4 text-reset">-->
+<!--          <i class="fab fa-instagram"></i>-->
+<!--        </a>-->
+<!--        <a href="" class="me-4 text-reset">-->
+<!--          <i class="fab fa-linkedin"></i>-->
+<!--        </a>-->
+<!--        <a href="" class="me-4 text-reset">-->
+<!--          <i class="fab fa-github"></i>-->
+<!--        </a>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; Right &ndash;&gt;-->
+<!--    </section>-->
+<!--    <div class="container p-4">-->
+<!--      &lt;!&ndash; Section: Iframe &ndash;&gt;-->
+<!--      <section class="">-->
+<!--        <div class="row d-flex justify-content-center">-->
+<!--          <div class="col-lg-6">-->
+<!--            <div class="ratio ratio-21x9">-->
+<!--              <iframe width="200" height="200" src="https://www.youtube.com/embed/PcppkJWHMgY"-->
+<!--                      title="YouTube video player" frameborder="0"-->
+<!--                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+<!--                      allowfullscreen></iframe>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-lg-6">-->
+<!--            <div class="ratio ratio-21x9">-->
+<!--              <iframe width="200" height="200" src="https://www.youtube.com/embed/wsq-r8lMMsk"-->
+<!--                      title="YouTube video player" frameborder="0"-->
+<!--                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+<!--                      allowfullscreen></iframe>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </section>-->
+<!--      &lt;!&ndash; Section: Iframe &ndash;&gt;-->
+<!--    </div>-->
+<!--    <section class="" style="background-color: lightgray">-->
+<!--      <div class="container text-center text-md-start mt-5">-->
+<!--        &lt;!&ndash; Grid row &ndash;&gt;-->
+<!--        <div class="row mt-3">-->
 
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              Useful links
-            </h6>
-            <p>
-              <a href="#!" class="text-reset">Pricing</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Settings</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Orders</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Help</a>
-            </p>
-          </div>
-          <!-- Grid column -->
+<!--          &lt;!&ndash; Grid column &ndash;&gt;-->
+<!--          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">-->
+<!--            &lt;!&ndash; Links &ndash;&gt;-->
+<!--            <h6 class="text-uppercase fw-bold mb-4">-->
+<!--              Useful links-->
+<!--            </h6>-->
+<!--            <p>-->
+<!--              <a href="#!" class="text-reset">Pricing</a>-->
+<!--            </p>-->
+<!--            <p>-->
+<!--              <a href="#!" class="text-reset">Settings</a>-->
+<!--            </p>-->
+<!--            <p>-->
+<!--              <a href="#!" class="text-reset">Orders</a>-->
+<!--            </p>-->
+<!--            <p>-->
+<!--              <a href="#!" class="text-reset">Help</a>-->
+<!--            </p>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; Grid column &ndash;&gt;-->
 
-          <!-- Grid column -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              Contact
-            </h6>
-            <p><i class="fas fa-home me-3"></i> Hải Châu, Đà Nẵng</p>
-            <p>
-              <i class="fas fa-envelope me-3"></i>
-              google@gmail.com
-            </p>
-            <p><i class="fas fa-phone me-3"></i> + 84 969696969</p>
-            <p><i class="fas fa-print me-3"></i> + 84 969696969</p>
-          </div>
-          <!-- Grid column -->
-        </div>
-        <!-- Grid row -->
-      </div>
-      <div class="text-center p-4">
-        © 2021 Copyright by search
-        <a class="text-reset fw-bold" href="https://google.com/">Google.com</a>
-      </div>
-    </section>
-  </footer>
-</div>
+<!--          &lt;!&ndash; Grid column &ndash;&gt;-->
+<!--          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">-->
+<!--            &lt;!&ndash; Links &ndash;&gt;-->
+<!--            <h6 class="text-uppercase fw-bold mb-4">-->
+<!--              Contact-->
+<!--            </h6>-->
+<!--            <p><i class="fas fa-home me-3"></i> Hải Châu, Đà Nẵng</p>-->
+<!--            <p>-->
+<!--              <i class="fas fa-envelope me-3"></i>-->
+<!--              google@gmail.com-->
+<!--            </p>-->
+<!--            <p><i class="fas fa-phone me-3"></i> + 84 969696969</p>-->
+<!--            <p><i class="fas fa-print me-3"></i> + 84 969696969</p>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; Grid column &ndash;&gt;-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Grid row &ndash;&gt;-->
+<!--      </div>-->
+<!--      <div class="text-center p-4">-->
+<!--        © 2021 Copyright by search-->
+<!--        <a class="text-reset fw-bold" href="https://google.com/">Google.com</a>-->
+<!--      </div>-->
+<!--    </section>-->
+<!--  </footer>-->
+<!--</div>-->
 

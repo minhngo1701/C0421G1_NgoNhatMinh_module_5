@@ -2,20 +2,17 @@
   <div class="col-lg-12" >
     <h3>Employee List</h3>
     <p>
-      <a class="btn btn-success mb-2" href="/employee/create" role="button">Create</a>
+      <a class="btn btn-success mb-2" routerLink="/employee/create" role="button">Create</a>
     </p>
-    <p style="color: green" th:if="${successMsg}" th:text="${successMsg}"></p>
-    <form action="/employee/search" method="post" >
-      <div>
-        <input type="text" name="search" placeholder="Search">
-        <button type="submit">Search</button>
-      </div>
-    </form>
+   <nav class="navbar">
+     <input type="text" name="name" [(ngModel)]="name" (ngModelChange)="search()" placeholder="Search">
+   </nav>
     <table class="table table-warning table-striped" border="1">
       <thead>
       <tr>
-        <th>ID</th>
-        <th>Name</th>
+        <th (click)="sort('id')">ID<i class="fa fa-sort"></i></th>
+        <th>Code Employee</th>
+        <th (click)="sort('name')">Name<i class="fa fa-sort"></i></th>
         <th>Date of birth</th>
         <th>ID Card</th>
         <th>Salary</th>
@@ -26,11 +23,28 @@
         <th>Education Degree</th>
         <th>Division</th>
         <th>Action</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
-
+      <tr *ngFor="let employee of employees | orderBy: key: reverse| paginate:{itemsPerPage:2,currentPage:p}">
+        <td>{{employee.id}}</td>
+        <td>{{employee.codeEmployee}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.dateOfBirth}}</td>
+        <td>{{employee.idCard}}</td>
+        <td>{{employee.salary}}</td>
+        <td>{{employee.phone}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.address}}</td>
+        <td>{{employee.position.name}}</td>
+        <td>{{employee.educationDegree.name}}</td>
+        <td>{{employee.division.name}}</td>
+        <td><button [routerLink]="['/employee/edit', employee.id]" class="btn btn-primary">Edit</button></td>
+        <td><button class="btn btn-danger" (click)="openConfirmDeleteEmployee(employee.id, employee.name)">Delete</button></td>
+      </tr>
       </tbody>
     </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>
