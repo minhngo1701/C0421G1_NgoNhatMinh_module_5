@@ -6,49 +6,78 @@
       <div class="mb-3">
         <label for="name" class="form-label">Name:</label>
         <input class="form-control" type="text" id="name" formControlName="name">
+        <div class="alert-danger" *ngFor="let va of validationMessage.customerType">
+          <div
+            *ngIf="createForm.get('name').hasError(va.type) && (createForm.get('name').dirty || createForm.get('name').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="code" class="form-label">Code Customer</label>
         <input class="form-control" type="text"  id="code" formControlName="code">
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.customerType">
+          <div
+            *ngIf="createForm.get('code').hasError(va.type) && (createForm.get('code').dirty || createForm.get('code').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="dateOfBirth" class="form-label">Date of birth:</label>
         <input class="form-control" type="date"  id="dateOfBirth" formControlName="dateOfBirth">
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.customerType">
+          <div
+            *ngIf="createForm.get('dateOfBirth').hasError(va.type) && (createForm.get('dateOfBirth').dirty || createForm.get('customerType').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="idCard" class="form-label">ID Card:</label>
         <input class="form-control" type="text"  id="idCard" formControlName="idCard">
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.idCard">
+          <div
+            *ngIf="createForm.get('idCard').hasError(va.type) && (createForm.get('idCard').dirty || createForm.get('idCard').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Gender:</label>
         <input  type="radio"  value="Male" formControlName="gender">Male
         <input  type="radio"  value="Female" formControlName="gender">Female
         <input  type="radio"  value="LGBT" formControlName="gender">LGBT
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.customerType">
+          <div
+            *ngIf="createForm.get('gender').hasError(va.type) && (createForm.get('gender').dirty || createForm.get('gender').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="phone" class="form-label">Phone</label>
         <input class="form-control" type="text" id="phone" formControlName="phone">
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.phone">
+          <div
+            *ngIf="createForm.get('phone').hasError(va.type) && (createForm.get('phone').dirty || createForm.get('phone').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input class="form-control" type="email" id="email" formControlName="email">
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.email">
+          <div
+            *ngIf="createForm.get('email').hasError(va.type) && (createForm.get('email').dirty || createForm.get('email').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="address" class="form-label">Address</label>
         <input class="form-control" type="text" id="address" formControlName="address">
       </div>
-
+      <div class="alert-danger" *ngFor="let va of validationMessage.address">
+        <div
+          *ngIf="createForm.get('address').hasError(va.type) && (createForm.get('address').dirty || createForm.get('address').touched)">{{va.message}}</div>
+      </div>
       <div class="mb-3">
         <label for="customerType" class="form-label">Customer Type</label>
         <select class="form-select" id="customerType" formControlName="customerType">
           <option *ngFor="let item of customerType" [ngValue]="item">{{item.name}}</option>
         </select>
+        <div class="alert-danger" *ngFor="let va of validationMessage.customerType">
+          <div
+            *ngIf="createForm.get('customerType').hasError(va.type) && (createForm.get('customerType').dirty || createForm.get('customerType').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div>
         <input class="btn btn-primary" type="submit" value="Submit">

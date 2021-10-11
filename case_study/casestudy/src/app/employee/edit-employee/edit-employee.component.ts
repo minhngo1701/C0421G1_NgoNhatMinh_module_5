@@ -18,7 +18,7 @@ import {Employee} from "../../model/employee";
 })
 export class EditEmployeeComponent implements OnInit {
   editForm: FormGroup = new FormGroup({
-    id:new FormControl(),
+    id:new FormControl(""),
     codeEmployee: new FormControl("", [Validators.compose([Validators.required,Validators.pattern("^NV-\\d{4}$")])]),
     name: new FormControl("",[Validators.compose([Validators.required,Validators.minLength(4)])]),
     dateOfBirth: new FormControl("",[Validators.compose([Validators.required])]),
@@ -26,10 +26,10 @@ export class EditEmployeeComponent implements OnInit {
     salary: new FormControl("",[Validators.compose([Validators.required,Validators.min(1)])]),
     phone: new FormControl("",[Validators.compose([Validators.required,Validators.pattern("^[(][84]{2}[)]\\\\+9[0-1]\\d{7}|09[0-1]\\d{7}$")])]),
     email: new FormControl("",[Validators.compose([Validators.required,Validators.pattern("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")])]),
-    address: new FormControl(),
-    position: new FormControl(),
-    educationDegree: new FormControl(),
-    division: new FormControl()
+    address: new FormControl(""),
+    position: new FormControl(""),
+    educationDegree: new FormControl(""),
+    division: new FormControl("")
   })
   positions: Position[];
   educationDegrees: EducationDegree[];

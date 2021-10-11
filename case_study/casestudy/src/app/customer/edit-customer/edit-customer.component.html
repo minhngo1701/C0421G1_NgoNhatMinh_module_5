@@ -3,54 +3,82 @@
   <div class="col-lg-6">
     <h1>Customer edit</h1>
     <form [formGroup]="editForm" (ngSubmit)="updateCustomer(id)">
-<!--      <input type="hidden" formControlName="id">-->
       <div class="mb-3">
         <label class="form-label">Name:</label>
         <input class="form-control" type="text" formControlName="name">
+<!--        <div class="alert-danger" *ngFor="let va of validationMessage.name" [hidden]="va.valid">-->
+<!--          <div-->
+<!--            *ngIf="editForm.get('name')?.hasError(va.type) && (editForm.get('name').dirty || editForm.get('name').touched)">{{va.message}}</div>-->
+<!--        </div>-->
       </div>
       <div class="mb-3">
         <label class="form-label">Code Customer</label>
         <input class="form-control" type="text" formControlName="code">
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.code">
+          <div
+            *ngIf="editForm.get('code').hasError(va.type) && (editForm.get('code').dirty || editForm.get('code').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Date of birth:</label>
         <input class="form-control" type="date" formControlName="dateOfBirth">
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.name">
+          <div
+            *ngIf="editForm.get('name').hasError(va.type) && (editForm.get('name').dirty || editForm.get('name').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">ID Card:</label>
         <input class="form-control" type="text" formControlName="idCard">
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.idCard">
+          <div
+            *ngIf="editForm.get('idCard').hasError(va.type) && (editForm.get('idCard').dirty || editForm.get('idCard').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Gender:</label>
         <input  type="radio"  value="Male" formControlName="gender">Male
         <input  type="radio"  value="Female" formControlName="gender">Female
         <input  type="radio"  value="LGBT" formControlName="gender">LGBT
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.gender">
+          <div
+            *ngIf="editForm.get('gender').hasError(va.type) && (editForm.get('gender').dirty || editForm.get('gender').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label  class="form-label">Phone</label>
         <input class="form-control" type="text" formControlName="phone">
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.phone">
+          <div
+            *ngIf="editForm.get('phone').hasError(va.type) && (editForm.get('phone').dirty || editForm.get('phone').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Email</label>
         <input class="form-control" type="email" formControlName="email">
-
+        <div class="alert-danger" *ngFor="let va of validationMessage.email">
+          <div
+            *ngIf="editForm.get('email').hasError(va.type) && (editForm.get('email').dirty || editForm.get('email').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Address</label>
         <input class="form-control" type="text" formControlName="address">
       </div>
-
+      <div class="alert-danger" *ngFor="let va of validationMessage.address">
+        <div
+          *ngIf="editForm.get('address').hasError(va.type) && (editForm.get('address').dirty || editForm.get('address').touched)">{{va.message}}</div>
+      </div>
       <div class="mb-3">
         <label class="form-label">Customer Type</label>
-        <section class="form-select" formControlName="customerType">
+        <select  formControlName="customerType">
           <option *ngFor="let item of cusType" [ngValue]="item"
-          [selected]="item.name == editForm.controls.cusType.value.name"> {{item.name}}</option>
-        </section>
+          [selected]="item.id == editForm.controls.customerType.value.id"> {{item.name}}</option>
+        </select>
+        <div class="alert-danger" *ngFor="let va of validationMessage.customerType">
+          <div
+            *ngIf="editForm.get('customerType').hasError(va.type) && (editForm.get('customerType').dirty || editForm.get('customerType').touched)">{{va.message}}</div>
+        </div>
       </div>
       <div>
         <input class="btn btn-primary" type="submit" value="Submit">
@@ -60,132 +88,3 @@
   <div class="col-lg-3"></div>
 </div>
 
-<!--<div class="container-fluid">-->
-<!--  <div class="row">-->
-<!--    <div class="col-lg-12" align="center">-->
-<!--      <h2>Edit Customer</h2>-->
-<!--      <button routerLink="/customer/list" class="btn btn-primary">Back to customer</button>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="row">-->
-<!--    <div class="col-lg-3"></div>-->
-<!--    <div class="col-lg-6">-->
-<!--      <div class="p-md-3">-->
-<!--        <form [formGroup]="customerForm" (ngSubmit)="update(id)">-->
-<!--          <div class="row g-3">-->
-<!--            <div class="col" hidden>-->
-<!--              <input type="text"-->
-<!--                     formControlName="id">-->
-<!--            </div>-->
-<!--            <div class="col">-->
-<!--              <label>Customer Code</label>-->
-<!--              <input type="text" class="form-control" aria-label="Customer Code"-->
-<!--                     formControlName="customerCode">-->
-<!--              &lt;!&ndash;              <div class="alert-danger" *ngFor="let va of validationMessage.customerCode" [hidden]="va.valid">&ndash;&gt;-->
-<!--              &lt;!&ndash;                <div&ndash;&gt;-->
-<!--              &lt;!&ndash;                  *ngIf="customerForm.get('code').hasError(va.type)&& customerForm.get('code').dirty">{{va.message}}</div>&ndash;&gt;-->
-<!--              &lt;!&ndash;              </div>&ndash;&gt;-->
-<!--            </div>-->
-<!--            <div class="col">-->
-<!--              <label>Name</label>-->
-<!--              <input type="text" class="form-control" placeholder="Customer Name" aria-label="Customer Name"-->
-<!--                     formControlName="customerName">-->
-<!--              &lt;!&ndash;              <div class="alert-danger" *ngFor="let va of validationMessage.customerName" [hidden]="va.valid">&ndash;&gt;-->
-<!--              &lt;!&ndash;                <div&ndash;&gt;-->
-<!--              &lt;!&ndash;                  *ngIf="customerForm.get('name').hasError(va.type)&& customerForm.get('name').dirty">{{va.message}}</div>&ndash;&gt;-->
-<!--              &lt;!&ndash;              </div>&ndash;&gt;-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="mb-3">-->
-<!--            <label class="form-label">Type Customer:</label>-->
-<!--            <select class="form-control" formControlName="customerType">-->
-<!--              <option *ngFor="let type of customerTypeList" [ngValue]="type"-->
-<!--                      [selected]="type.customerTypeName == customerForm.controls.customerType.value.customerTypeName">{{type.customerTypeName}}</option>-->
-<!--            </select>-->
-<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerType" [hidden]="va.valid">&ndash;&gt;-->
-<!--            &lt;!&ndash;              <div&ndash;&gt;-->
-<!--            &lt;!&ndash;                *ngIf="customerForm.get('customerType').hasError(va.type)&& customerForm.get('customerType').dirty">{{va.message}}</div>&ndash;&gt;-->
-<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--          </div>-->
-<!--          <div class="mb-3">-->
-<!--            <label class="form-label">Birthday</label>-->
-<!--            <input type="date" class="form-control" formControlName="customerBirthday">-->
-<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerBirthday" [hidden]="va.valid">&ndash;&gt;-->
-<!--            &lt;!&ndash;              <div&ndash;&gt;-->
-<!--            &lt;!&ndash;                *ngIf="customerForm.get('birthday').hasError(va.type)&& customerForm.get('birthday').dirty">{{va.message}}</div>&ndash;&gt;-->
-<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--          </div>-->
-<!--          <div class="mb-3">-->
-<!--            <label> Customer Gender</label><br><br>-->
-<!--            <div class="form-check-inline mb-3">-->
-<!--              <input class="form-check-input" type="radio" id="male" formControlName="customerGender"-->
-<!--                     value="Male">-->
-<!--              <label class="form-check-label" for="male">-->
-<!--                Male-->
-<!--              </label>-->
-<!--            </div>-->
-<!--            <div class="form-check-inline mb-3">-->
-<!--              <input class="form-check-input" type="radio" id="female" formControlName="customerGender"-->
-<!--                     value="Female">-->
-<!--              <label class="form-check-label" for="female">-->
-<!--                Female-->
-<!--              </label>-->
-<!--            </div>-->
-<!--            <div class="form-check-inline mb-3">-->
-<!--              <input class="form-check-input" type="radio" id="other" formControlName="customerGender"-->
-<!--                     value="Other">-->
-<!--              <label class="form-check-label" for="other">-->
-<!--                Other-->
-<!--              </label>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerGender" [hidden]="va.valid">&ndash;&gt;-->
-<!--          &lt;!&ndash;              <div&ndash;&gt;-->
-<!--          &lt;!&ndash;                *ngIf="customerForm.get('gender').hasError(va.type)&& customerForm.get('gender').dirty">{{va.message}}</div>&ndash;&gt;-->
-<!--          &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--          <div class="mb-3">-->
-<!--            <label class="form-label">ID Card</label>-->
-<!--            <input type="text" class="form-control" placeholder="ID Card" aria-label="Customer ID Card"-->
-<!--                   formControlName="customerIdCard">-->
-<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerIdCard" [hidden]="va.valid">&ndash;&gt;-->
-<!--            &lt;!&ndash;              <div&ndash;&gt;-->
-<!--            &lt;!&ndash;                *ngIf="customerForm.get('birthday').hasError(va.type)&& customerForm.get('birthday').dirty">{{va.message}}</div>&ndash;&gt;-->
-<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--          </div>-->
-<!--          <div class="mb-3">-->
-<!--            <label class="form-label">Phone</label>-->
-<!--            <input type="text" class="form-control" placeholder="Phone" aria-label="Customer Phone"-->
-<!--                   formControlName="customerPhone"-->
-<!--            >-->
-<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerPhone" [hidden]="va.valid">&ndash;&gt;-->
-<!--            &lt;!&ndash;              <div&ndash;&gt;-->
-<!--            &lt;!&ndash;                *ngIf="customerForm.get('phone').hasError(va.type)&& customerForm.get('phone').dirty">{{va.message}}</div>&ndash;&gt;-->
-<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--          </div>-->
-<!--          <div class="mb-3">-->
-<!--            <label class="form-label">Email</label>-->
-<!--            <input type="email" class="form-control" placeholder="Customer email" aria-label="Customer email"-->
-<!--                   formControlName="customerEmail">-->
-<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerEmail" [hidden]="va.valid">&ndash;&gt;-->
-<!--            &lt;!&ndash;              <div&ndash;&gt;-->
-<!--            &lt;!&ndash;                *ngIf="customerForm.get('email').hasError(va.type)&& customerForm.get('email').dirty">{{va.message}}</div>&ndash;&gt;-->
-<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--          </div>-->
-<!--          <div class="mb-3">-->
-<!--            <label class="form-label">Address</label>-->
-<!--            <input type="text" class="form-control" placeholder="Customer address" aria-label="Customer address"-->
-<!--                   formControlName="customerAddress">-->
-<!--            &lt;!&ndash;            <div class="alert-danger" *ngFor="let va of validationMessage.customerAddress" [hidden]="va.valid">&ndash;&gt;-->
-<!--            &lt;!&ndash;              <div&ndash;&gt;-->
-<!--            &lt;!&ndash;                *ngIf="customerForm.get('address').hasError(va.type)&& customerForm.get('address').dirty">{{va.message}}</div>&ndash;&gt;-->
-<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--          </div>-->
-<!--          <div class="col-auto">-->
-<!--            <button type="submit" class="btn btn-primary mb-3">Edit</button>-->
-<!--          </div>-->
-<!--        </form>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="col-lg-3"></div>-->
-<!--  </div>-->
-<!--</div>-->

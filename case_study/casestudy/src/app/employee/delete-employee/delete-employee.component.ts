@@ -10,8 +10,7 @@ import {Employee} from "../../model/employee";
   styleUrls: ['./delete-employee.component.css']
 })
 export class DeleteEmployeeComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-  public dialogRef: MatDialogRef<DeleteEmployeeComponent>, private employeeService: EmployeeService, private activatedRoute: ActivatedRoute, private route: Router) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
 
   }
 

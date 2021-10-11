@@ -24,6 +24,7 @@ import { DeleteEmployeeComponent } from './employee/delete-employee/delete-emplo
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { DeleteCustomerComponent } from './customer/delete-customer/delete-customer.component';
 import {CreateCustomerComponent} from "./customer/create-customer/create-customer.component";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {CreateCustomerComponent} from "./customer/create-customer/create-custome
     BrowserAnimationsModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

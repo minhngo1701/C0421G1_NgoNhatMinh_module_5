@@ -1,0 +1,31 @@
+<form [formGroup]="createForm" (ngSubmit)="createCinema()">
+  <div>
+    <label>Code</label>
+    <input type="text" formControlName="code">
+    <mat-error *ngFor="let validation of validationMsg.code">
+      <mat-error *ngIf="createForm.get('code').hasError(validation.type) && createForm.get('code').dirty">{{validation.message}}</mat-error>
+    </mat-error>
+  </div>
+  <div>
+    <label>Movie</label>
+    <select  formControlName="movie">
+      <option *ngFor="let item of movies" [ngValue]="item">{{item.name}}</option>
+    </select>
+  </div>
+  <div>
+    <label>Date Start</label>
+    <input type="date" formControlName="dateStart">
+    <mat-error *ngIf="createForm.controls.dateStart.hasError('invalid') && createForm.controls.dateStart.dirty">Date show must after today</mat-error>
+  </div>
+  <div>
+    <label>Amount Ticket</label>
+    <input type="number" formControlName="amount">
+    <mat-error *ngFor="let validation of validationMsg.amount">
+      <mat-error *ngIf="createForm.get('amount').hasError(validation.type) && createForm.get('amount').dirty">{{validation.message}}</mat-error>
+    </mat-error>
+  </div>
+  <div>
+    <button type="submit" [disabled]="!createForm.valid">Submit</button>
+    <button routerLink="/cinema" style="margin-left: 20px">Back</button>
+  </div>
+</form>

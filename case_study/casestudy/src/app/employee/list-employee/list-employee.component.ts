@@ -5,6 +5,7 @@ import {Employee} from "../../model/employee";
 import {normalizeExtraEntryPoints} from "@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteEmployeeComponent} from "../delete-employee/delete-employee.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-list-employee',
@@ -15,7 +16,7 @@ export class ListEmployeeComponent implements OnInit {
   employees: Employee[] ;
   name: any;
   p: number = 1;
-  constructor(public employeeService: EmployeeService, public dialog: MatDialog) {
+  constructor(public employeeService: EmployeeService, public dialog: MatDialog, private snackBar: MatSnackBar) {
     // this.employeeService.getAll().subscribe(next => {
     //   this.employees = next;
 
@@ -57,8 +58,12 @@ export class ListEmployeeComponent implements OnInit {
     dialog.afterClosed().subscribe(next=>{
       console.log(next)
       if (next == 'true') {
-        this.employeeService.delete(id).subscribe(data => {
+        this.employeeService.delete(id).subscribe(() => {
           this.ngOnInit();
+          this.snackBar.open("Delete success!", "", {
+            duration: 2000,
+            verticalPosition: "top"
+          })
         })
       }
     })

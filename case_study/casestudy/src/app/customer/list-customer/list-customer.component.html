@@ -38,7 +38,7 @@
           <td>{{item.code}}</td>
           <td>{{item.customerType.name}}</td>
           <td><button class="btn btn-primary" [routerLink]="['/customer/edit', item.id]">Edit</button></td>
-          <td></td>
+          <td><button class="btn btn-danger" (click)="openDialogDeleteCus(item.id, item.name)">Delete</button></td>
         </tr>
       </tbody>
     </table>
