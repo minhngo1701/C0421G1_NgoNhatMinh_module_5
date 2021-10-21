@@ -53,14 +53,15 @@ export class EditCustomerComponent implements OnInit {
   }
 
   updateCustomer(id: number) {
-    this.customerService.updateCus(id, this.editForm.value).subscribe(next => {
-      console.log(this.editForm.value)
-      this.route.navigateByUrl("/customer")
-      this.snackBar.open("update success!", "", {
-        duration: 2000,
-        verticalPosition: "top"
+    if (this.editForm.valid) {
+      this.customerService.updateCus(id, this.editForm.value).subscribe(next => {
+        console.log(this.editForm.value)
+        this.route.navigateByUrl("/customer")
+        this.snackBar.open("update success!", "", {
+          duration: 2000,
+        })
       })
-    })
+    }
   }
   validationMessage = {
     code: [

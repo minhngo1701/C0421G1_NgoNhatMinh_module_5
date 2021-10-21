@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<div class="row" id="printPdf">
+  <div class="col-lg-12" >
+    <h1 style="text-align: center">Garage List</h1>
+    <div class="row">
+      <div class="col-6">
+        <a class="btn btn-success" routerLink="/garage/create" role="button">Thêm mới</a>
+      </div>
+    </div>
+    <p style="color: green" ></p>
+    <table class="table table-warning table-striped" border="1">
+      <thead>
+      <tr>
+        <th>Số xe</th>
+        <th>Loại xe</th>
+        <th>Tên nhà xe</th>
+        <th>Điểm đi</th>
+        <th>Điểm đến</th>
+        <th>Số điện thoại</th>
+        <th>Email</th>
+        <th>Giờ đi</th>
+        <th>Giờ đến</th>
+        <th>Action</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of garages">
+        <td>{{item.codeNumber}}</td>
+        <td>{{item.carType}}</td>
+        <td>{{item.station}}</td>
+        <td>{{item.locationStart}}</td>
+        <td>{{item.locationEnd}}</td>
+        <td>{{item.phone}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.timeStart}}</td>
+        <td>{{item.timeEnd}}</td>
+        <td><button class="btn btn-primary" [routerLink]="['/garage/edit', item.id]">Sửa</button></td>
+        <td><button class="btn btn-danger" (click)="openDialogDelete(item.id, item.station)">Xóa</button></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-6" >
+        <button ngxPrint printSectionId="printPdf" [useExistingCss]="true" >Print to PDF</button>
+      </div>
+      <div class="col-6 d-flex justify-content-end">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" (click)="previous()">Previous</a></li>
+            <li class="page-item"><a class="page-link" (click)="next()">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

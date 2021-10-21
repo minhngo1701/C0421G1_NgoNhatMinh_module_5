@@ -24,7 +24,7 @@
   "customers": [
     {
       "code": "KH-0001",
-      "name": "Nguyen Tien Danh",
+      "name": "Ngô Nhật Minh",
       "gender": "Male",
       "idCard": "123456781",
       "phone": "0901111111",
@@ -32,14 +32,14 @@
         "id": 1,
         "name": "Diamond"
       },
-      "dateOfBirth": "2001-01-22",
-      "email": "ndanh@gmail.com",
+      "dateOfBirth": "2021-10-01",
+      "email": "minh@gmail.com",
       "address": "Da Nang",
       "id": 1
     },
     {
       "code": "KH-0002",
-      "name": "Truong Anh Quan",
+      "name": "Nguyễn Tiến Danh",
       "gender": "Male",
       "idCard": "123123123112",
       "phone": "0901231232",
@@ -47,30 +47,30 @@
         "id": 2,
         "name": "Platinum"
       },
-      "dateOfBirth": "2021-07-03",
-      "email": "qan@codegym.vn",
+      "dateOfBirth": "2021-10-02",
+      "email": "danh@gmail.com",
       "address": "Vung Tau",
       "id": 2
     },
     {
       "code": "KH-0003",
-      "name": "Ngo Nhat Minh",
-      "gender": "Female",
+      "name": "Trương Anh Quân",
+      "gender": "Male",
       "idCard": "201482948",
       "phone": "0903928172",
       "customerType": {
         "id": 3,
         "name": "Gold"
       },
-      "dateOfBirth": "2021-07-03",
-      "email": "min@codegym.vn",
+      "dateOfBirth": "2021-10-03",
+      "email": "quan@gmail.com",
       "address": "Hue",
       "id": 3
     },
     {
       "code": "KH-0002",
-      "name": "Nguyen Thanh Lam",
-      "gender": "Female",
+      "name": "Nguyễn Thanh Lâm",
+      "gender": "Male",
       "idCard": "192740281",
       "phone": "0909217320",
       "customerType": {
@@ -78,9 +78,24 @@
         "name": "Silver"
       },
       "dateOfBirth": "2021-07-03",
-      "email": "lam@codegym.vn",
+      "email": "lam@gmail.com",
       "address": "Ha Noi",
       "id": 4
+    },
+    {
+      "id": 5,
+      "code": "KH-3434",
+      "name": "Nguyễn Văn A",
+      "dateOfBirth": "2021-12-12",
+      "gender": "Female",
+      "idCard": "333332222",
+      "phone": "0912345678",
+      "email": "a@gmail.com",
+      "address": "Hà Nội",
+      "customerType": {
+        "id": 1,
+        "name": "Diamond"
+      }
     }
   ],
   "educationDegrees": [
@@ -150,23 +165,24 @@
       "id": 1,
       "name": "HaiTT",
       "position": {
-        "id": 1,
-        "name": "Trung cấp"
+        "id": 3,
+        "name": "Đại học"
       },
       "division": {
         "id": 1,
         "name": "Sale marketing"
       },
       "educationDegree": {
-        "id": 1,
-        "name": "Lễ tân"
+        "id": 3,
+        "name": "Chuyên viên"
       },
-      "email": "HaiTT1@codegym.vn",
-      "birthday": "1996-06-30",
+      "email": "HaiTT@codegym.vn",
+      "dateOfBirth": "1996-06-30",
       "phone": "0901234567",
       "address": "Hà Nội",
       "idCard": "018249102",
-      "salary": "7000000"
+      "salary": "7000000",
+      "codeEmployee": "NV-0001"
     },
     {
       "id": 2,
@@ -176,19 +192,66 @@
         "name": "Cao đẳng"
       },
       "division": {
-        "id": 3,
-        "name": "Phục vụ"
+        "id": 1,
+        "name": "Sale marketing"
       },
       "educationDegree": {
-        "id": 5,
-        "name": "Quản lý"
+        "id": 3,
+        "name": "Chuyên viên"
       },
-      "email": "chien1@codegym.vn",
-      "birthday": "1998-06-30",
-      "phone": "0931827462",
+      "email": "TrungDP@codegym.vn",
+      "dateOfBirth": "1998-06-30",
+      "phone": "0901234567",
       "address": "Đà Nẵng",
       "idCard": "1024019212",
-      "salary": "6000000"
+      "salary": "6000000",
+      "codeEmployee": "NV-0002"
+    },
+    {
+      "codeEmployee": "NV-1000",
+      "name": "ChienTM",
+      "dateOfBirth": "2021-12-12",
+      "idCard": "3333322111",
+      "salary": 7000000,
+      "phone": "0912345678",
+      "email": "chien@gmail.com",
+      "address": "Hà Nội",
+      "position": {
+        "id": 3,
+        "name": "Đại học"
+      },
+      "educationDegree": {
+        "id": 3,
+        "name": "Chuyên viên"
+      },
+      "division": {
+        "id": 2,
+        "name": "Hành chính"
+      },
+      "id": 3
+    },
+    {
+      "codeEmployee": "NV-1111",
+      "name": "Nguyễn Văn A",
+      "dateOfBirth": "1111-11-11",
+      "idCard": "123441411",
+      "salary": 7000000,
+      "phone": "0912345678",
+      "email": "a@gmail.com",
+      "address": "Quảng Nam",
+      "position": {
+        "id": 2,
+        "name": "Cao đẳng"
+      },
+      "educationDegree": {
+        "id": 2,
+        "name": "Phục vụ"
+      },
+      "division": {
+        "id": 1,
+        "name": "Sale marketing"
+      },
+      "id": 4
     }
   ]
 }

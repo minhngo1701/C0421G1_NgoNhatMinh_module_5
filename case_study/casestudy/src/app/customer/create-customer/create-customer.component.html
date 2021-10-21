@@ -1,12 +1,13 @@
+<app-navbar></app-navbar>
 <div class="row">
   <div class="col-lg-3"></div>
   <div class="col-lg-6">
-    <h1>Employee Create</h1>
+    <h1 style="text-align: center">Customer Create</h1>
     <form [formGroup]="createForm" (ngSubmit)="createCustomer()">
       <div class="mb-3">
         <label for="name" class="form-label">Name:</label>
         <input class="form-control" type="text" id="name" formControlName="name">
-        <div class="alert-danger" *ngFor="let va of validationMessage.customerType">
+        <div *ngFor="let va of validationMessage.name">
           <div
             *ngIf="createForm.get('name').hasError(va.type) && (createForm.get('name').dirty || createForm.get('name').touched)">{{va.message}}</div>
         </div>
@@ -14,7 +15,7 @@
       <div class="mb-3">
         <label for="code" class="form-label">Code Customer</label>
         <input class="form-control" type="text"  id="code" formControlName="code">
-        <div class="alert-danger" *ngFor="let va of validationMessage.customerType">
+        <div  *ngFor="let va of validationMessage.code">
           <div
             *ngIf="createForm.get('code').hasError(va.type) && (createForm.get('code').dirty || createForm.get('code').touched)">{{va.message}}</div>
         </div>
@@ -22,15 +23,15 @@
       <div class="mb-3">
         <label for="dateOfBirth" class="form-label">Date of birth:</label>
         <input class="form-control" type="date"  id="dateOfBirth" formControlName="dateOfBirth">
-        <div class="alert-danger" *ngFor="let va of validationMessage.customerType">
+        <div  *ngFor="let va of validationMessage.dateOfBirth">
           <div
-            *ngIf="createForm.get('dateOfBirth').hasError(va.type) && (createForm.get('dateOfBirth').dirty || createForm.get('customerType').touched)">{{va.message}}</div>
+            *ngIf="createForm.get('dateOfBirth').hasError(va.type) && (createForm.get('dateOfBirth').dirty || createForm.get('dateOfBirth').touched)">{{va.message}}</div>
         </div>
       </div>
       <div class="mb-3">
         <label for="idCard" class="form-label">ID Card:</label>
         <input class="form-control" type="text"  id="idCard" formControlName="idCard">
-        <div class="alert-danger" *ngFor="let va of validationMessage.idCard">
+        <div  *ngFor="let va of validationMessage.idCard">
           <div
             *ngIf="createForm.get('idCard').hasError(va.type) && (createForm.get('idCard').dirty || createForm.get('idCard').touched)">{{va.message}}</div>
         </div>
@@ -40,7 +41,7 @@
         <input  type="radio"  value="Male" formControlName="gender">Male
         <input  type="radio"  value="Female" formControlName="gender">Female
         <input  type="radio"  value="LGBT" formControlName="gender">LGBT
-        <div class="alert-danger" *ngFor="let va of validationMessage.customerType">
+        <div *ngFor="let va of validationMessage.gender">
           <div
             *ngIf="createForm.get('gender').hasError(va.type) && (createForm.get('gender').dirty || createForm.get('gender').touched)">{{va.message}}</div>
         </div>
@@ -48,7 +49,7 @@
       <div class="mb-3">
         <label for="phone" class="form-label">Phone</label>
         <input class="form-control" type="text" id="phone" formControlName="phone">
-        <div class="alert-danger" *ngFor="let va of validationMessage.phone">
+        <div *ngFor="let va of validationMessage.phone">
           <div
             *ngIf="createForm.get('phone').hasError(va.type) && (createForm.get('phone').dirty || createForm.get('phone').touched)">{{va.message}}</div>
         </div>
@@ -56,7 +57,7 @@
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input class="form-control" type="email" id="email" formControlName="email">
-        <div class="alert-danger" *ngFor="let va of validationMessage.email">
+        <div *ngFor="let va of validationMessage.email">
           <div
             *ngIf="createForm.get('email').hasError(va.type) && (createForm.get('email').dirty || createForm.get('email').touched)">{{va.message}}</div>
         </div>
@@ -65,7 +66,7 @@
         <label for="address" class="form-label">Address</label>
         <input class="form-control" type="text" id="address" formControlName="address">
       </div>
-      <div class="alert-danger" *ngFor="let va of validationMessage.address">
+      <div *ngFor="let va of validationMessage.address">
         <div
           *ngIf="createForm.get('address').hasError(va.type) && (createForm.get('address').dirty || createForm.get('address').touched)">{{va.message}}</div>
       </div>
@@ -74,15 +75,16 @@
         <select class="form-select" id="customerType" formControlName="customerType">
           <option *ngFor="let item of customerType" [ngValue]="item">{{item.name}}</option>
         </select>
-        <div class="alert-danger" *ngFor="let va of validationMessage.customerType">
+        <div *ngFor="let va of validationMessage.customerType">
           <div
             *ngIf="createForm.get('customerType').hasError(va.type) && (createForm.get('customerType').dirty || createForm.get('customerType').touched)">{{va.message}}</div>
         </div>
       </div>
       <div>
-        <input class="btn btn-primary" type="submit" value="Submit">
+        <input class="btn btn-primary" type="submit" value="Submit" >
       </div>
     </form>
   </div>
   <div class="col-lg-3"></div>
 </div>
+<app-footer></app-footer>

@@ -1,0 +1,64 @@
+{
+  "carType": [
+    {
+      "id": 1,
+      "name": "Giường nằm"
+    },
+    {
+      "id": 2,
+      "name": "Ghế ngồi"
+    }
+  ],
+  "stations": [
+    {
+      "id": 1,
+      "name": "Mai Linh"
+    },
+    {
+      "id": 2,
+      "name": "Phương Trang"
+    },
+    {
+      "id": 3,
+      "name": "Hoàng Long"
+    }
+  ],
+  "garages": [
+    {
+      "id": 2,
+      "codeNumber": "1222",
+      "carType": {
+        "id": 2,
+        "name": "Ghế ngồi"
+      },
+      "station": {
+        "id": 1,
+        "name": "Hoàng Long"
+      },
+      "locationStart": "Đà Nẵng",
+      "locationEnd": "Quảng Bình",
+      "phone": "0939574122",
+      "email": "hoanglong@gmaI",
+      "timeStart": "10:20",
+      "timeEnd": "13:00"
+    },
+    {
+      "id": 3,
+      "codeNumber": "2311",
+      "carType": {
+        "id": 1,
+        "name": "Giường nằm"
+      },
+      "station": {
+        "id": 1,
+        "name": "Mai Linh"
+      },
+      "locationStart": "Đà Nẵng",
+      "locationEnd": "Hồ Chí Minh",
+      "phone": "0971456382",
+      "email": "mailinh@gmail.com",
+      "timeStart": "06:20",
+      "timeEnd": "08:00"
+    }
+  ]
+}

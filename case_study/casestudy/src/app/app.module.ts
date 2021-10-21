@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { EmployeeCreateComponent } from './employee/create/employee-create.component';
 import { ContractCreateComponent } from './contract/contract-create.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -18,18 +17,19 @@ import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {Ng2OrderModule} from "ng2-order-pipe";
 import {NgxPaginationModule} from "ngx-pagination";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {MatDialogModule} from "@angular/material/dialog";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { DeleteEmployeeComponent } from './employee/delete-employee/delete-employee.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { DeleteCustomerComponent } from './customer/delete-customer/delete-customer.component';
 import {CreateCustomerComponent} from "./customer/create-customer/create-customer.component";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { HomePageComponent } from './home-page/home-page.component';
+import {SearchCustomerPipe} from "./search-customer.pipe";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     CreateCustomerComponent,
     EmployeeCreateComponent,
     ContractCreateComponent,
@@ -40,7 +40,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     EditEmployeeComponent,
     ListEmployeeComponent,
     DeleteEmployeeComponent,
-    DeleteCustomerComponent
+    DeleteCustomerComponent,
+    HomePageComponent,
+    SearchCustomerPipe
   ],
   imports: [
     BrowserModule,

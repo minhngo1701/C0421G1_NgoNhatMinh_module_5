@@ -1,7 +1,8 @@
+<app-navbar></app-navbar>
 <div class="row">
   <div class="col-lg-3"></div>
   <div class="col-lg-6">
-    <h1>Employee Edit</h1>
+    <h1 style="text-align: center">Employee update</h1>
     <form [formGroup]="editForm" (ngSubmit)="updateEmployee(id)">
       <input type="hidden" formControlName="id">
       <div class="mb-3">
@@ -9,7 +10,7 @@
         <input class="form-control" type="text" formControlName="name" id="nameEmployee">
         <mat-error *ngFor="let validation of validationMsg.name">
           <mat-error
-            *ngIf="editForm.get('name').hasError(validation.type) && editForm.get('name').dirty">{{validation.message}}</mat-error>
+            *ngIf="editForm.get('name').hasError(validation.type) && (editForm.get('name').dirty || editForm.get('dateOfBirth').touched)">{{validation.message}}</mat-error>
         </mat-error>
       </div>
       <div class="mb-3">
@@ -17,7 +18,7 @@
         <input class="form-control" type="text" formControlName="codeEmployee" id="codeEmployee">
         <mat-error *ngFor="let validation of validationMsg.codeEmployee">
           <mat-error
-            *ngIf="editForm.get('codeEmployee').hasError(validation.type) && editForm.get('codeEmployee').dirty">{{validation.message}}</mat-error>
+            *ngIf="editForm.get('codeEmployee').hasError(validation.type) && (editForm.get('codeEmployee').dirty|| editForm.get('dateOfBirth').touched)">{{validation.message}}</mat-error>
         </mat-error>
       </div>
       <div class="mb-3">
@@ -25,7 +26,7 @@
         <input class="form-control" type="date" formControlName="dateOfBirth" id="dateOfBirth">
         <mat-error *ngFor="let validation of validationMsg.dateOfBirth">
           <mat-error
-            *ngIf="editForm.get('dateOfBirth').hasError(validation.type) && editForm.get('dateOfBirth').dirty">{{validation.message}}</mat-error>
+            *ngIf="editForm.get('dateOfBirth').hasError(validation.type) && (editForm.get('dateOfBirth').dirty || editForm.get('dateOfBirth').touched)">{{validation.message}}</mat-error>
         </mat-error>
       </div>
       <div class="mb-3">
@@ -41,7 +42,7 @@
         <input class="form-control" type="number" formControlName="salary" id="salary">
         <mat-error *ngFor="let validation of validationMsg.salary">
           <mat-error
-            *ngIf="editForm.get('salary').hasError(validation.type) && editForm.get('salary').dirty">{{validation.message}}</mat-error>
+            *ngIf="editForm.get('salary').hasError(validation.type) && (editForm.get('salary').dirty || editForm.get('salary').touched)">{{validation.message}}</mat-error>
         </mat-error>
       </div>
       <div class="mb-3">
@@ -49,52 +50,69 @@
         <input class="form-control" type="text" formControlName="phone" id="phone">
         <mat-error *ngFor="let validation of validationMsg.phone">
           <mat-error
-            *ngIf="editForm.get('phone').hasError(validation.type) && editForm.get('phone').dirty">{{validation.message}}</mat-error>
+            *ngIf="editForm.get('phone').hasError(validation.type) && (editForm.get('phone').dirty || editForm.get('phone').touched)">{{validation.message}}</mat-error>
         </mat-error>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input class="form-control" type="email" formControlName="name" id="email">
+        <input class="form-control" type="email" formControlName="email" id="email">
         <mat-error *ngFor="let validation of validationMsg.email">
           <mat-error
-            *ngIf="editForm.get('email').hasError(validation.type) && editForm.get('email').dirty">{{validation.message}}</mat-error>
+            *ngIf="editForm.get('email').hasError(validation.type) && (editForm.get('email').dirty || editForm.get('email').touched)">{{validation.message}}</mat-error>
         </mat-error>
       </div>
       <div class="mb-3">
         <label for="address" class="form-label">Address</label>
         <input class="form-control" type="text" formControlName="address" id="address">
+        <mat-error *ngFor="let validation of validationMsg.email">
+          <mat-error
+            *ngIf="editForm.get('address').hasError(validation.type) && (editForm.get('address').dirty || editForm.get('address').touched)">{{validation.message}}</mat-error>
+        </mat-error>
       </div>
       <div class="mb-3">
         <label for="position" class="form-label">Position</label>
         <select class="form-select" formControlName="position" id="position">
           <option *ngFor="let item of positions" [ngValue]="item"
-                  [selected]="item.name === editForm.controls.positions.value.name">
+                  [selected]="item.id === editForm.controls.position.value.id">
             {{item.name}}
           </option>
         </select>
+        <mat-error *ngFor="let validation of validationMsg.position">
+          <mat-error
+            *ngIf="editForm.get('position').hasError(validation.type) && (editForm.get('position').dirty || editForm.get('position').touched)">{{validation.message}}</mat-error>
+        </mat-error>
       </div>
       <div class="mb-3">
         <label for="educationDegree" class="form-label">Education Degree</label>
         <select class="form-select" id="educationDegree" formControlName="educationDegree">
           <option *ngFor="let item of educationDegrees" [ngValue]="item"
-                  [selected]="item.name === editForm.controls.educationDegrees.value.name">
+                  [selected]="item.id === editForm.controls.educationDegree.value.id">
             {{item.name}}
           </option>
+          <mat-error *ngFor="let validation of validationMsg.educationDegree">
+            <mat-error
+              *ngIf="editForm.get('educationDegree').hasError(validation.type) && (editForm.get('educationDegree').dirty || editForm.get('educationDegree').touched)">{{validation.message}}</mat-error>
+          </mat-error>
         </select>
       </div>
       <div class="mb-3">
         <label for="division" class="form-label">Division</label>
         <select class="form-select" formControlName="division" id="division">
           <option *ngFor="let item of divisions" [ngValue]="item"
-                  [selected]="item.name === editForm.controls.divisions.value.name">
+                  [selected]="item.id === editForm.controls.division.value.id">
             {{item.name}}
           </option>
         </select>
+        <mat-error *ngFor="let validation of validationMsg.division">
+          <mat-error
+            *ngIf="editForm.get('division').hasError(validation.type) && (editForm.get('division').dirty || editForm.get('division').touched)">{{validation.message}}</mat-error>
+        </mat-error>
       </div>
       <div>
-        <input type="submit" value="Save">
+        <input class="btn btn-primary" type="submit" value="Save" [disabled]="!editForm.valid">
       </div>
     </form>
   </div>
   <div class="col-lg-3"></div>
 </div>
+<app-footer></app-footer>

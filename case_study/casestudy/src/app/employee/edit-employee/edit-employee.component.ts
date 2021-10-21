@@ -9,6 +9,7 @@ import {Position} from "../../model/position";
 import {EducationDegree} from "../../model/education-degree";
 import {Division} from "../../model/division";
 import {Employee} from "../../model/employee";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -26,37 +27,37 @@ export class EditEmployeeComponent implements OnInit {
     salary: new FormControl("",[Validators.compose([Validators.required,Validators.min(1)])]),
     phone: new FormControl("",[Validators.compose([Validators.required,Validators.pattern("^[(][84]{2}[)]\\\\+9[0-1]\\d{7}|09[0-1]\\d{7}$")])]),
     email: new FormControl("",[Validators.compose([Validators.required,Validators.pattern("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")])]),
-    address: new FormControl(""),
-    position: new FormControl(""),
-    educationDegree: new FormControl(""),
-    division: new FormControl("")
+    address: new FormControl("",[Validators.required]),
+    position: new FormControl("",[Validators.required]),
+    educationDegree: new FormControl("",[Validators.required]),
+    division: new FormControl("",[Validators.required])
   })
   positions: Position[];
   educationDegrees: EducationDegree[];
   divisions: Division[];
   editEmployee: Employee;
   id: number;
-  constructor(private activatedRoute: ActivatedRoute,private employeeService: EmployeeService, private pService: PositionService, private eduService: EducationDegreeService, private divService: DivisionService,private route: Router) {
-    this.activatedRoute.paramMap.subscribe((paraMap: ParamMap) => {
-      this.id = +paraMap.get('id');
-      this.getAllList();
+  constructor(private activatedRoute: ActivatedRoute,private employeeService: EmployeeService, private positionService: PositionService,
+              private educationDegreeService: EducationDegreeService, private divisionService: DivisionService,private route: Router,
+              private snackBar: MatSnackBar) {
+     this.positionService.getAll().subscribe(next => {
+       this.positions = next;
+     });
+    this.educationDegreeService.getAll().subscribe(next1 => {
+      this.educationDegrees = next1;
+    });
+    this.divisionService.getAll().subscribe(next2 => {
+      this.divisions = next2;
+    })
+    this.activatedRoute.paramMap.subscribe((paraMap:ParamMap) => {
+      this.id = +paraMap.get("id");
       this.getEmployee(this.id);
     })
   }
 
   ngOnInit(): void {
   }
-  getAllList() {
-     this.pService.getAll().subscribe(next => {
-      this.positions = next;
-    });
-    this.eduService.getAll().subscribe(next => {
-      this.educationDegrees = next;
-    });
-    this.divService.getAll().subscribe(next => {
-      this.divisions = next;
-    });
-  }
+
   getEmployee(id: number) {
     return this.employeeService.findById(id).subscribe((next )=> {
       this.editEmployee = next;
@@ -67,9 +68,14 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   updateEmployee(id: number) {
-    this.employeeService.update(id, this.editForm.value).subscribe(next => {
-      this.route.navigateByUrl("/employee")
-    })
+    if (this.editForm.valid) {
+      this.employeeService.update(id, this.editForm.value).subscribe(next => {
+        this.route.navigateByUrl("/employee")
+        this.snackBar.open("create success!", "", {
+          duration: 3000,
+        })
+      })
+    }
   }
 
   validationMsg = {
@@ -97,7 +103,18 @@ export class EditEmployeeComponent implements OnInit {
       {type: "require", message: "Email must not be empty"},
       {type: "pattern", message: "Email is wrong. Ex: abc@gmail.com"},
     ],
-
+    address: [
+      {type: "require", message: "address must not be empty"},
+    ],
+    position: [
+      {type: "require", message: "position must not be empty"},
+    ],
+    educationDegree: [
+      {type: "require", message: "educationDegree must not be empty"},
+    ],
+    division: [
+      {type: "require", message: "division must not be empty"},
+    ]
 
   }
 

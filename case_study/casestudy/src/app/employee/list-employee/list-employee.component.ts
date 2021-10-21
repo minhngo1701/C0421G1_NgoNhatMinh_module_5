@@ -49,7 +49,7 @@ export class ListEmployeeComponent implements OnInit {
     let dialog = this.dialog.open(DeleteEmployeeComponent, {
       width: '500px',
       position: {
-        top: "20px"
+        top: "50px"
       },
       data: {
         name: name
@@ -62,7 +62,6 @@ export class ListEmployeeComponent implements OnInit {
           this.ngOnInit();
           this.snackBar.open("Delete success!", "", {
             duration: 2000,
-            verticalPosition: "top"
           })
         })
       }

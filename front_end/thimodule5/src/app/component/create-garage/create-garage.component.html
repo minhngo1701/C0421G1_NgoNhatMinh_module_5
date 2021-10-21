@@ -1,0 +1,101 @@
+<app-navbar></app-navbar>
+<div class="row">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+    <h1 style="text-align: center">Garage update</h1>
+    <form [formGroup]="createForm" (ngSubmit)="createGarage()">
+      <input type="hidden" formControlName="id">
+      <div class="mb-3">
+        <label for="codeNumber" class="form-label">Số xe:</label>
+        <input class="form-control" type="text" formControlName="codeNumber" id="codeNumber">
+
+      </div>
+      <div class="mb-3">
+        <label for="carType" class="form-label">Loại xe:</label>
+        <select class="form-select" formControlName="carType" id="carType">
+          <option value="Giường nằm">Giường nằm</option>
+          <option value="Ghế ngồi">Ghế ngồi</option>
+        </select>
+        <mat-error *ngFor="let validation of validationMessage.carType">
+          <mat-error
+            *ngIf="createForm.get('carType').hasError(validation.type) && (createForm.get('carType').dirty|| createForm.get('carType').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+      </div>
+      <div class="mb-3">
+        <label for="station" class="form-label">Tên nhà xe:</label>
+        <select class="form-select" formControlName="station" id="station">
+          <option value="Mai Linh">Mai Linh</option>
+          <option value="Hoàng Long">Hoàng Long</option>
+          <option value="Phương Trang">Phương Trang</option>
+        </select>
+        <mat-error *ngFor="let validation of validationMessage.station">
+          <mat-error
+            *ngIf="createForm.get('station').hasError(validation.type) && (createForm.get('station').dirty || createForm.get('station').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+      </div>
+      <div class="mb-3">
+        <label for="locationStart" class="form-label">Điểm đi:</label>
+        <select formControlName="locationStart" id="locationStart">
+          <option value="Đà Nẵng">Đà Nẵng</option>
+          <option value="Hà Nội">Hà Nội</option>
+          <option value="Sài Gòn">Sài Gòn</option>
+        </select>
+        <mat-error *ngFor="let validation of validationMessage.locationStart">
+          <mat-error
+            *ngIf="createForm.get('locationStart').hasError(validation.type) && createForm.get('locationStart').dirty">{{validation.message}}</mat-error>
+        </mat-error>
+      </div>
+      <div class="mb-3">
+        <label for="locationEnd" class="form-label">Điểm đến:</label>
+        <select formControlName="locationEnd" id="locationEnd">
+          <option value="Đà Nẵng">Đà Nẵng</option>
+          <option value="Hà Nội">Hà Nội</option>
+          <option value="Sài Gòn">Sài Gòn</option>
+        </select>
+        <mat-error *ngFor="let validation of validationMessage.locationEnd">
+          <mat-error
+            *ngIf="createForm.get('locationEnd').hasError(validation.type) && (createForm.get('locationEnd').dirty || createForm.get('locationEnd').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Số điện thoại</label>
+        <input class="form-control" type="text" formControlName="phone" id="phone">
+        <mat-error *ngFor="let validation of validationMessage.phone">
+          <mat-error
+            *ngIf="createForm.get('phone').hasError(validation.type) && (createForm.get('phone').dirty || createForm.get('phone').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input class="form-control" type="email" formControlName="email" id="email">
+        <mat-error *ngFor="let validation of validationMessage.email">
+          <mat-error
+            *ngIf="createForm.get('email').hasError(validation.type) && (createForm.get('email').dirty || createForm.get('email').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+      </div>
+      <div class="mb-3">
+        <label for="timeStart" class="form-label">Giờ đi</label>
+        <input class="form-control" type="time" formControlName="timeStart" id="timeStart">
+        <mat-error *ngFor="let validation of validationMessage.timeStart">
+          <mat-error
+            *ngIf="createForm.get('timeStart').hasError(validation.type) && (createForm.get('timeStart').dirty || createForm.get('timeStart').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+      </div>
+      <div class="mb-3">
+        <label for="timeEnd" class="form-label">Giờ đến</label>
+        <input class="form-control" type="time" formControlName="timeEnd" id="timeEnd">
+        <mat-error *ngFor="let validation of validationMessage.timeEnd">
+          <mat-error
+            *ngIf="createForm.get('timeEnd').hasError(validation.type) && (createForm.get('timeEnd').dirty || createForm.get('timeEnd').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+      </div>
+      <div>
+        <input class="btn btn-primary" type="submit" value="Submit" [disabled]="!createForm.valid">
+        <a class="btn btn-primary" style="margin-left: 30px" routerLink="/garage" role="button">Back</a>
+      </div>
+    </form>
+  </div>
+  <div class="col-lg-3"></div>
+</div>
+<app-footer></app-footer>
+

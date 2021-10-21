@@ -8,6 +8,7 @@ import {EducationDegreeService} from "../../service/education-degree.service";
 import {DivisionService} from "../../service/division.service";
 import {EducationDegree} from "../../model/education-degree";
 import {Division} from "../../model/division";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-employee-create',
@@ -19,7 +20,7 @@ export class EmployeeCreateComponent implements OnInit {
   positionList: Position[];
   educationDegreeList: EducationDegree[];
   divisionList: Division[];
-  constructor(private employeeService: EmployeeService,private positionService: PositionService,private educationDegreeService: EducationDegreeService,private divisionService: DivisionService, private route: Router) {
+  constructor(private employeeService: EmployeeService,private positionService: PositionService,private educationDegreeService: EducationDegreeService,private divisionService: DivisionService, private route: Router,private snackBar: MatSnackBar) {
     this.employeeForm = new FormGroup({
       codeEmployee: new FormControl("", [Validators.compose([Validators.required, Validators.pattern("^NV-\\d{4}$")])]),
       name: new FormControl("",[Validators.compose([Validators.required,Validators.minLength(4)])]),
@@ -28,10 +29,10 @@ export class EmployeeCreateComponent implements OnInit {
       salary: new FormControl("",[Validators.compose([Validators.required,Validators.min(1)])]),
       phone: new FormControl("",[Validators.compose([Validators.required,Validators.pattern("^[(][84]{2}[)]\\\\+9[0-1]\\d{7}|09[0-1]\\d{7}$")])]),
       email: new FormControl("",[Validators.compose([Validators.required,Validators.pattern("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")])]),
-      address: new FormControl(),
-      position: new FormControl(),
-      educationDegree: new FormControl(),
-      division: new FormControl()
+      address: new FormControl("",[Validators.required]),
+      position: new FormControl("",[Validators.required]),
+      educationDegree: new FormControl("",[Validators.required]),
+      division: new FormControl("",[Validators.required])
     });
     this.positionService.getAll().subscribe(next => {
       this.positionList = next;
@@ -49,11 +50,15 @@ export class EmployeeCreateComponent implements OnInit {
   }
 
   createEmployee() {
-    this.employeeService.create(this.employeeForm.value).subscribe(next => {
-      this.route.navigateByUrl("/employee");
-      console.log(this.employeeForm.value);
-      // alert("Create employee success!");
-    })
+    if (this.employeeForm.valid) {
+      this.employeeService.create(this.employeeForm.value).subscribe(next => {
+        this.route.navigateByUrl("/employee");
+        // console.log(this.employeeForm.value);
+        this.snackBar.open("create success!", "", {
+          duration: 3000,
+        })
+      })
+    }
   }
 
   validationMsg = {
@@ -84,7 +89,18 @@ export class EmployeeCreateComponent implements OnInit {
       {type: "require", message: "Email must not be empty"},
       {type: "pattern", message: "Email is wrong. Ex: abc@gmail.com"},
     ],
-
+    address: [
+      {type: "require", message: "address must not be empty"},
+    ],
+    position: [
+      {type: "require", message: "position must not be empty"},
+    ],
+    educationDegree: [
+      {type: "require", message: "educationDegree must not be empty"},
+    ],
+    division: [
+      {type: "require", message: "division must not be empty"},
+    ]
 
   }
 }

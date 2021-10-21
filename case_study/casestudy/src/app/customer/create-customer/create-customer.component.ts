@@ -36,14 +36,15 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   createCustomer() {
-    this.customerService.createCus(this.createForm.value).subscribe(() => {
-      // console.log(this.createForm.value);
-      this.route.navigateByUrl("/customer");
-      this.snackBar.open("create success!", "", {
-        duration: 2000,
-        verticalPosition: "top"
+    if (this.createForm.valid) {
+      this.customerService.createCus(this.createForm.value).subscribe(() => {
+        // console.log(this.createForm.value);
+        this.route.navigateByUrl("/customer");
+        this.snackBar.open("create success!", "", {
+          duration: 3000,
+        })
       })
-    })
+    }
   }
   validationMessage = {
     code: [
@@ -68,7 +69,7 @@ export class CreateCustomerComponent implements OnInit {
     customerType: [
       {type : 'required', message: 'Not null'},
     ],
-    birthday: [
+    dateOfBirth: [
       {type : 'required', message: 'Not null'},
       {type : 'pattern', message: 'invalid'},
     ],
